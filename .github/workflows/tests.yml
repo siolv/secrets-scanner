@@ -26,11 +26,3 @@ jobs:
 
       - name: Self-scan (must find no real secrets)
         run: python scanner.py . --out scan-report.md
-
-      - name: Upload scan report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: scan-report-${{ matrix.python-version }}
-          path: scan-report.md
-          if-no-files-found: ignore

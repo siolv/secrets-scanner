@@ -14,6 +14,10 @@ and what to clean up afterward.
 
 No cloud services. No third-party Python packages. Nothing leaves the machine.
 
+![Secrets report summary](docs/01-report-summary.png)
+
+*Sample run against a small demo repo with three planted leaks and a removed token in git history. All values are masked.*
+
 ## Quick start
 
 ```bash
@@ -22,6 +26,8 @@ python scanner.py C:\path\to\folder
 ```
 
 That writes `report.md`. Open it and work top to bottom.
+
+![CLI output](docs/05-cli-output.png)
 
 Scan git history as well:
 
@@ -108,6 +114,12 @@ can use this key until it is deactivated.
 **Verify the old one is dead:** Run `aws sts get-caller-identity` with the new
 key. The old key must return InvalidClientTokenId.
 ```
+
+![Findings table](docs/02-findings-table.png)
+
+![GitHub rotation plan](docs/03-github-rotation-plan.png)
+
+![Stripe rotation plan](docs/04-stripe-rotation-plan.png)
 
 The summary groups the **same secret** across every file and commit by a short
 fingerprint, so one leaked key produces one rotation plan — not five duplicate
